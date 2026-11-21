@@ -1,48 +1,365 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sileza</title>
+<title>s1leza — personal space</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+* { box-sizing: border-box; }
+
 body {
-  background: #0a0a0a;
-  color: #c9c9c9;
-  font-family: monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  background: #08090b;
+  color: #c5c5c5;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
   min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#ffffff09 1px, transparent 1px);
+  background-size: 4px 4px;
+  z-index: -1;
+}
+
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 50px 22px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #222;
+}
+
+.status {
+  color: #9b9b9b;
+}
+
+.green {
+  color: #8bba91;
+}
+
+header {
+  margin: 65px 0 35px;
+}
+
+h1 {
+  font-size: 38px;
+  color: #eee;
+  font-weight: 500;
+  letter-spacing: -2px;
   margin: 0;
 }
-.container {
-  width: 90%;
-  max-width: 600px;
+
+.subtitle {
+  color: #666;
+  margin-top: 12px;
 }
-h1 {
-  color: white;
-  font-size: 42px;
+
+.box {
+  border: 1px solid #252525;
+  padding: 20px;
+  margin-bottom: 14px;
+  background: #0b0c0e;
 }
+
+.box-title {
+  color: #555;
+  font-size: 11px;
+  margin-bottom: 17px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.avatar {
+  width: 65px;
+  height: 65px;
+  background: #17181c;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 22px;
+}
+
+.profile-text {
+  line-height: 1.8;
+}
+
+.tabs {
+  display: flex;
+  gap: 7px;
+  margin: 24px 0 15px;
+  flex-wrap: wrap;
+}
+
+button {
+  background: #0b0c0e;
+  border: 1px solid #252525;
+  color: #777;
+  padding: 10px 15px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+button:hover, button.active {
+  color: #ddd;
+  border-color: #555;
+  background: #151619;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+p {
+  line-height: 1.9;
+}
+
 a {
-  color: #888;
+  color: #aaa;
   text-decoration: none;
 }
+
 a:hover {
-  color: white;
+  color: #fff;
+}
+
+.item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1d1d1d;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.item-name {
+  color: #ddd;
+  margin-bottom: 6px;
+}
+
+.item-desc {
+  color: #666;
+  line-height: 1.7;
+}
+
+footer {
+  border-top: 1px solid #222;
+  padding-top: 18px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+  font-size: 11px;
+}
+
+#clock { color: #888; }
+
+@media (max-width: 500px) {
+  .container { padding: 30px 16px; }
+  header { margin-top: 45px; }
+  h1 { font-size: 34px; }
+  .box { padding: 16px; }
 }
 </style>
 </head>
+
 <body>
 <div class="container">
-<h1>sileza</h1>
-<p>just another person on the internet.</p>
-<hr>
-<p>about me / projects / music / games</p>
-<p>
-<a href="#">telegram</a> ·
-<a href="#">github</a> ·
-<a href="#">soundcloud</a>
-</p>
+
+  <div class="top">
+    <span>personal website / v1.0</span>
+    <span class="status"><span class="green">●</span> online</span>
+  </div>
+
+  <header>
+    <h1>s1leza<span style="color:#555">.</span></h1>
+    <div class="subtitle">somewhere on the internet.</div>
+  </header>
+
+  <div class="box">
+    <div class="box-title">/ PROFILE</div>
+    <div class="profile">
+      <div class="avatar">s.</div>
+      <div class="profile-text">
+        <div style="color:#ddd">s1leza</div>
+        <div>just a human</div>
+        <div style="color:#555">currently existing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="active" onclick="showTab('about',this)">about</button>
+    <button onclick="showTab('projects',this)">projects</button>
+    <button onclick="showTab('interests',this)">interests</button>
+    <button onclick="showTab('links',this)">links</button>
+  </div>
+
+  <div id="about" class="panel active">
+    <div class="box">
+      <div class="box-title">/ ABOUT</div>
+      <p>
+        welcome to my little corner of the internet.
+        nothing special here, just things i like
+        and stuff i'm making.
+      </p>
+      <p style="color:#555">
+        feel free to look around.
+      </p>
+    </div>
+  </div>
+
+  <div id="projects" class="panel">
+    <div class="box">
+      <div class="box-title">/ PROJECTS</div>
+      <div class="item">
+        <div class="item-name">personal website</div>
+        <div class="item-desc">this website. still a work in progress.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">plugins</div>
+        <div class="item-desc">small experiments and random ideas.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="interests" class="panel">
+    <div class="box">
+      <div class="box-title">/ INTERESTS</div>
+      <div class="item">
+        <div class="item-name">music</div>
+        <div class="item-desc">making mixes, listening to random stuff.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">games</div>
+        <div class="item-desc">osu!, geometry dash, minecraft.</div>
+      </div>
+      <div class="item">
+        <div class="item-name">other</div>
+        <div class="item-desc">coding, messing around with things.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="links" class="panel">
+    <div class="box">
+      <div class="box-title">/ LINKS</div>
+      <div class="item">
+        <a href="https://github.com/s1leza" target="_blank">github ↗</a>
+      </div>
+      <div class="item">
+        <a href="https://s1leza.github.io" target="_blank">website ↗</a>
+      </div>
+      <div class="item">
+        <a href="#" target="_blank">telegram ↗</a>
+      </div>
+      <div class="item">
+        <a href="#" target="_blank">soundcloud ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 s1leza</span>
+    <span id="clock">00:00:00</span>
+  </footer>
+
 </div>
+
+<script>
+function showTab(id, button) {
+  document.querySelectorAll('.panel').forEach(p => {
+    p.classList.remove('active');
+  });
+
+  document.querySelectorAll('.tabs button').forEach(b => {
+    b.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+  button.classList.add('active');
+}
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('ru-RU');
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
+  <div id="links" class="panel">
+    <div class="box">
+      <div class="box-title">/ LINKS</div>
+      <div class="item">
+        <a href="https://github.com/s1leza" target="_blank">github ↗</a>
+      </div>
+      <div class="item">
+        <a href="https://s1leza.github.io" target="_blank">website ↗</a>
+      </div>
+      <div class="item">
+        <a href="#" target="_blank">telegram ↗</a>
+      </div>
+      <div class="item">
+        <a href="#" target="_blank">soundcloud ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 s1leza</span>
+    <span id="clock">00:00:00</span>
+  </footer>
+
+</div>
+
+<script>
+function showTab(id, button) {
+  document.querySelectorAll('.panel').forEach(p => {
+    p.classList.remove('active');
+  });
+
+  document.querySelectorAll('.tabs button').forEach(b => {
+    b.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+  button.classList.add('active');
+}
+
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('ru-RU');
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
 </body>
 </html>
